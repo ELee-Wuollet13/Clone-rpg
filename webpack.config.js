@@ -1,7 +1,7 @@
 const path = require('path');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
- const HtmlWebpackPlugin = require('html-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: './src/main.js',
@@ -17,13 +17,26 @@ module.exports = {
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(['dist']),
     new HtmlWebpackPlugin({
-      title: 'index',
-      tamplate: './src/index.html',
+      title: 'Project Title',
+      template: './src/index.html',
       inject: 'body'
     })
   ],
   module: {
     rules: [
+            {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              bypassOnDebug: true, // webpack@1.x
+              disable: true, // webpack@2.x and newer
+            },
+          },
+        ],
+      },
       {
         test: /\.css$/,
         use: [
@@ -34,9 +47,10 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: [
-          /node_modules/,
-        /spec/
-      ],
+                /node_modules/,
+                /spec/,
+                /img/
+              ],
         loader: "eslint-loader"
       }
     ]

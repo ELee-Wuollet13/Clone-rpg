@@ -7,13 +7,17 @@
     "env": {
       "es6": true,
       "browser": true,
-      "jquery": true
+      "jquery": true,
+      "node": true,
+      "jasmine": true
     },
-    "rules": {
-        "semi": 1,
-        "indent": ["warn", 2],
-        "no-console": "warn",
-        "no-debugger": "warn",
-        "no-unused-vars": "warn"
-    }
+      "rules": {
+      "semi": 1,
+      "indent": ["warn", 2],
+      "no-console": "warn",
+      "no-debugger": "warn",
+      "no-undef": "warn",
+      "no-unused-vars": "warn",
+      "no-extra-semi": "warn"
+  }
 }
