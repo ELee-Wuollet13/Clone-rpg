@@ -1,7 +1,10 @@
 const path = require('path');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
-  entery: './src/main.js'
+  entry: './src/main.js',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist')
@@ -13,7 +16,7 @@ module.exports = {
   plugins: [
     new UglifyJsPlugin({ sourceMap: true }),
     new CleanWebpackPlugin(['dist']),
-    new HtmlWebpacklugin({
+    new HtmlWebpackPlugin({
       title: 'index',
       tamplate: './src/index.html',
       inject: 'body'
@@ -22,7 +25,7 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.css$.,
+        test: /\.css$/,
         use: [
           'style-loader',
           'css-loader'
@@ -30,7 +33,10 @@ module.exports = {
       },
       {
         test: /\.js$/,
-        exclude: /node_modules/,
+        exclude: [
+          /node_modules/,
+        /spec/
+      ],
         loader: "eslint-loader"
       }
     ]
