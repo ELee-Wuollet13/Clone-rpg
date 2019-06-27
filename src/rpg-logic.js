@@ -4,27 +4,10 @@ export function charSheet (name, race, job){
   this.job =  job;
 }
 
-function worldPop (){
-  this.roster = [];
-}
 
-worldPop.prototype.addChar = function (characterToAdd){
-  this.roster.push(characterToAdd);
-}
 
-var ourList = new worldPop ();
 
 //user interface
-$(document).ready(function(){
-  form.submit(function(){
-    newCharName = $("#name").val();
-    console.log(newCharName)
-
-    var newPlayerCharacter = new Character (newCharName, newCharRace, newCharJob)
-    ourList.addChar(newPlayerCharacter);
-  })// this closes form submit
-
-});// this closes doc ready
 
 
 
